@@ -100,7 +100,7 @@ public class start : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        /*
         // タッチされているかチェック(スマホ)
         if (Input.touchCount > 0)
         {
@@ -121,6 +121,7 @@ public class start : MonoBehaviour
             TapTouch(Input.mousePosition);
 
         }
+        */
 
         timeCheck();
 
@@ -201,6 +202,7 @@ public class start : MonoBehaviour
                         tapButtonSyokika();
                         tapButton[0] = clickButton;
                         clickNumber = clickButton.GetComponent<buttonTap>().getNumber();
+                        tapButtontennmetu(clickButton);
 
                     }
                     else
@@ -247,8 +249,8 @@ public class start : MonoBehaviour
     private void tapButtonSyokika()
     {
         // 点滅処理の為に生えてきた初期化メソッド
+        // 点滅を消す
 
-        // 点滅処理
         for (int i = 0; i < tapButton.Length; i++)
         {
             if (tapButton[i] == null)

@@ -51,7 +51,7 @@ public class Dialog : MonoBehaviour
         // 上限アップボタン
         syokitiue = PlayerPrefs.GetInt("syokitiue", 1); // ボタン生成時の初期値の上限
         ueText = GameObject.FindGameObjectWithTag("Dia_ue");
-        uecoinPlus = 100;
+        uecoinPlus = 50;
         //uecoin = syokitiue * uecoinPlus;
         uecoin = keisann(syokitiue, uecoinPlus);
         uehyouzi();
@@ -60,7 +60,7 @@ public class Dialog : MonoBehaviour
         // 下限アップボタン
         syokitisita = PlayerPrefs.GetInt("syokitisita", 1); // 初期値の下限
         sitaText = GameObject.FindGameObjectWithTag("Dia_sita");
-        sitacoinPlus = 200;
+        sitacoinPlus = 100;
         //sitacoin = syokitisita * sitacoinPlus;
         sitacoin = keisann(syokitisita, sitacoinPlus);
         sitahyouzi();
@@ -68,7 +68,7 @@ public class Dialog : MonoBehaviour
         // 最大値アップボタン
         max = PlayerPrefs.GetInt("maxNumber", 50); // 数値の最大値
         maxText = GameObject.FindGameObjectWithTag("Dia_max");
-        maxcoinPlus = 200;
+        maxcoinPlus = 100;
         //maxcoin = max * maxcoinPlus;
         maxcoin = keisann(max, maxcoinPlus);
         maxhyouzi();
