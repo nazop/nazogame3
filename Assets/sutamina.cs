@@ -21,6 +21,7 @@ public class sutamina : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         maxplay = 5;
         kaihukuminutes = 5; // 5分
         kaihukutime = kaihukuminutes * 60; 
@@ -50,7 +51,7 @@ public class sutamina : MonoBehaviour
 
         nokorizikann = kaihukutime - (int)spansecond;
 
-        if (playsuu != maxplay)
+        if (playsuu < maxplay)
         {
             spp = nokorizikann % 60;
 
@@ -83,7 +84,7 @@ public class sutamina : MonoBehaviour
 
         Textkousinn();
 
-        if (playsuu == maxplay)
+        if (playsuu >= maxplay)
         {            
             return;
         }
@@ -128,5 +129,26 @@ public class sutamina : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void sutaminaplus()
+    {
+
+        playsuu++;
+        PlayerPrefs.SetInt("sutamina", playsuu);
+
+    }
+
+    public bool sutaminamax()
+    {
+        if (playsuu < 100)
+        {
+            return true;
+
+        }
+        else
+        {
+            return false;
+        }
     }
 }

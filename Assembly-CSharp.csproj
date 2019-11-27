@@ -69,6 +69,7 @@
     <Compile Include="Assets\start.cs" />
     <Compile Include="Assets\startgamenn.cs" />
     <Compile Include="Assets\sutamina.cs" />
+    <None Include="Assets\UnityAds\link.xml" />
     <None Include="Assets\NotoSansCJKjp-hinted\LICENSE_OFL.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/kabus/program/unity/nazogame2/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
@@ -282,6 +283,12 @@
     </Reference>
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.4.12f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Advertisements.Editor">
+      <HintPath>C:/Users/kabus/program/unity/nazogame2/Assets/UnityAds/UnityEngine.Advertisements.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Monetization.Editor">
+      <HintPath>C:/Users/kabus/program/unity/nazogame2/Assets/UnityAds/UnityEngine.Monetization.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
       <HintPath>C:/Users/kabus/program/unity/nazogame2/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>

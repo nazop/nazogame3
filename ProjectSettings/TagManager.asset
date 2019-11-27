@@ -16,6 +16,7 @@ TagManager:
   - error
   - Dialog
   - sutamina
+  - adbutton
   layers:
   - Default
   - TransparentFX

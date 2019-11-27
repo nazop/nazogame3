@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Advertisements;
+using UnityEngine.Monetization;
 
 public class startgamenn : MonoBehaviour {
 
@@ -29,6 +31,23 @@ public class startgamenn : MonoBehaviour {
 
     public GameObject errordialog; // インスペクターから入れた方が画面使いやすい
     private Text errorText; // Textコンポーネントなので.text="エラーテキスト"で中身変更
+
+    private string _gameId = "3375725";
+    private bool testMode = false; // true=test
+
+    public GameObject koukoku_ok; // インスペクターから入れた方が画面使いやすい
+    public GameObject koukoku_no; // インスペクターから入れた方が画面使いやすい
+
+    public GameObject adbutton; // インスペクターから入れた方が画面使いやすい
+
+    private void Awake()
+    {
+
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            adbutton.SetActive(true);
+        }
+    }
 
     // Use this for initialization
     void Start () {
@@ -59,6 +78,8 @@ public class startgamenn : MonoBehaviour {
         // エラー処理用
         errorText = errordialog.transform.Find("Text").gameObject.GetComponent<Text>();
 
+        // 広告の設定
+        Monetization.Initialize(_gameId, testMode);
 
     }
 	
@@ -120,5 +141,122 @@ public class startgamenn : MonoBehaviour {
         errordialog.SetActive(false);
         return;
     }
-    
+
+    public void ad()
+    {
+        if(suta.sutaminamax() == false)
+        {
+            addia(0);
+            return;
+        }
+
+        adkakuninn();
+        return;
+
+    }
+
+    //広告結果イベント
+    private void HandleShowResult(UnityEngine.Monetization.ShowResult result)
+    //private void HandleShowResult(UnityEngine.Advertisements.ShowResult result)
+    {
+        switch (result)
+        {
+            //最後まで終了
+            case UnityEngine.Monetization.ShowResult.Finished:
+                suta.sutaminaplus();
+                addia(1);
+                break;
+            //途中スキップ
+            case UnityEngine.Monetization.ShowResult.Skipped:
+                addia(2);
+                break;
+            //表示失敗
+            case UnityEngine.Monetization.ShowResult.Failed:
+                addia(3);
+                break;
+        }
+    }
+
+    private void addia(int syurui)
+    {
+        if(syurui == 1)
+        {
+            errorText.text =
+            "スタミナが\n" +
+            "1回復しました";
+
+        } else if(syurui == 2)
+        {
+            errorText.text =
+            "広告が\n" +
+            "途中終了しました";
+        } else if(syurui == 3)
+        {
+            errorText.text =
+            "表示失敗";
+        } else if (syurui == 0)
+        {
+            errorText.text =
+            "プレイ数上限値です";
+        }
+
+
+        errordialog.SetActive(true);
+
+        Invoke("errorDelay", 1.0f);
+        return;
+    }
+
+    private void adkakuninn()
+    {
+        errorText.text =
+        "本当に\n" +
+        "広告を見ますか?";
+
+        errordialog.SetActive(true);
+
+        koukoku_ok.SetActive(true);
+        koukoku_no.SetActive(true);
+
+        return;
+    }
+
+    public void koukoku_ok_click()
+    {
+        koukoku_no_click();
+        adstart();
+    }
+
+    public void koukoku_no_click()
+    {
+        errordialog.SetActive(false);
+
+        koukoku_ok.SetActive(false);
+        koukoku_no.SetActive(false);
+        return;
+    }
+
+    private void adstart()
+    {
+        if (Advertisement.IsReady("rewardedVideo"))
+        {
+            // ビデオ見せる
+
+            // 失敗の数々、結局備え付けのadは古いとかで使えなくてアセットダウンロードした
+            //ShowAdCallbacks options = new ShowAdCallbacks();
+            //ShowOptions options = new ShowOptions();
+            //options.finishCallback = HandleShowResult;
+            //options.resultCallback = HandleShowResult;
+            //ShowAdPlacementContent pc = Monetization.GetPlacementContent("rewardedVideo");
+            ShowAdPlacementContent pc = Monetization.GetPlacementContent("rewardedVideo") as ShowAdPlacementContent;
+            //Advertisement.Show("rewardedVideo", options);
+            if (pc != null)
+            {
+                pc.Show(HandleShowResult);
+            }
+
+
+        }
+    }
+
 }
