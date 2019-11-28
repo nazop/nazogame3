@@ -1,6 +1,6 @@
 Android
 PlayerPath?
-C:/Users/kabus/program/unity/app/nazogame3/nazogame3.apk
+C:/Users/kabus/program/unity/app/nazogame3/nazogame3.aab
 SceneListBegin?
 Assets/start.unity
 Assets/index.unity

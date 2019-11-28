@@ -410,7 +410,8 @@ public class start : MonoBehaviour
 
         }
 
-        tapButton = new GameObject[necessaryTap];
+        //tapButton = new GameObject[necessaryTap];
+        tapButtonSyokika();
         clickNumber = 0;
 
         return;
